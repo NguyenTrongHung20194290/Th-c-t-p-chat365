@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js" integrity="sha512-eVL5Lb9al9FzgR63gDs1MxcDS2wFu3loYAgjIH0+Hg38tCS8Ag62dwKyH+wzDb+QauDpEZjXbMn11blw8cbTJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        // let domain ="http://localhost:3000";
+        // socket = io(domain);
+        // socket.connect();
+        // socket.emit("Login",123,"timviec365");
+        
+        // socket.on("Login",(userId)=>{
+        //     console.log(userId)
+        // })
+
+        // socket.on("Logout",(userId,status)=>{
+        //     console.log("Logout",userId)
+        //     console.log("Logout",status)
+        // })
+        //let IdDevice = "bcsdbusdbvusbd"
+        // let IdDevice = prompt("Nhập userId","bcsdbusdbvusbd")
+        const socket = io.connect('http://43.239.223.142:3000', {
+            secure: true,
+            enabledTransports: ["wss"],
+            transports: ['websocket', 'polling'],
+        });
+        socket.emit("Login",17496,'chat365') // worked 
+        socket.on("Login",(a,b,c)=>{
+            
+            // console.log("Login",a,b,c);
+            // console.log(!isNaN(a)) // nếu là true thì là só 
+
+        })
+        socket.on("SendNotification",(notification)=>{
+            console.log("SendNotification",notification)
+        })
+        socket.on("Logout",(a,b,c)=>{
+            // nếu k phải là số thì in ra 
+            if(isNaN(a)){
+                console.log("Không phải là số")
+            }
+        })
+
+        //socket.on("Login_v2",(data)=>{console.log(data)})
+        // socket.on("SendMessage",(mes)=>{
+        //     console.log(mes);
+        // })
+        // socket.on("Logout",(id,status)=>{console.log(id,status)})
+    </script>
+</body>
+</html>
